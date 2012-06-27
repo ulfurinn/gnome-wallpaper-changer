@@ -15,12 +15,15 @@ module Gnome::Wallpaper::Changer
       end
 
       def update
-        puts "update"
+        files = get_active_files
+        selected = files[ rand(files.length) ]
+        puts "update: #{selected}"
+        `gsettings set org.gnome.desktop.background picture-uri "file://#{selected}"`
         schedule!
       end
 
       def get_active_files
-        []
+        Configuration.folders.map { |folder| get_files_in_folder( folder[:path] ) - folder[:excluded] }.flatten + Configuration.files
       end
 
       def get_expanded_configuration
