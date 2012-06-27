@@ -1,0 +1,11 @@
+!!!
+%html
+	%head
+		%script{ :src => '/javascript/jquery-1.7.2.min.js' }
+		%script{ :src => '/javascript/jquery.color.js' }
+		%script{ :src => '/javascript/updater.js' }
+	%body{ :onload => "Updater.init()" }
+		%h1 Wallpaper changer
+		%form{ :action => '/interval', :method => 'POST' }
+			%label{ :for => 'interval' } Rotation interval: 
+			%input{ :name => 'interval', :id => 'interval' }

@@ -24,8 +24,18 @@ module Gnome::Wallpaper::Changer
 
       public
 
-      attr_accessor :interval, :port
-      autosaving :interval, :port
+      attr_accessor :interval, :port, :active, :folders, :files
+
+      def interval= value
+        @interval = if value < 1
+          1
+        else
+          value
+        end
+      end
+
+      autosaving :interval, :port, :active, :folders, :files
+      alias_method :active?, :active
 
       CONFIG_DIR = "#{ENV['HOME']}/.config/gnome-wallpaper-changer"
       CONFIG_FILE = "#{CONFIG_DIR}/config.yml"
@@ -33,7 +43,13 @@ module Gnome::Wallpaper::Changer
       def default_config
         {
           interval: 60 * 10,
-          port: 12345
+          port: 12345,
+          active: false,
+          folders: [ {
+            path: ENV['HOME'] + '/Pictures',
+            excluded: []
+          } ],
+          files: [ ]
         }
       end
 
@@ -41,7 +57,10 @@ module Gnome::Wallpaper::Changer
         {
           version: VERSION,
           port: self.port,
-          interval: self.interval
+          interval: self.interval,
+          active: self.active?,
+          folders: self.folders,
+          files: self.files
         }
       end
 

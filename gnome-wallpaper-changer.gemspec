@@ -17,4 +17,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "thin"
   gem.add_dependency "sinatra"
+  gem.add_dependency "haml"
+  gem.add_dependency "json"
 end

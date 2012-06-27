@@ -1,4 +1,5 @@
 require "sinatra/base"
+require "json"
 
 module Gnome::Wallpaper::Changer
 
@@ -8,13 +9,27 @@ module Gnome::Wallpaper::Changer
       __FILE__
     end
 
+    set :root, File.join(File.dirname(main_file), "..", "..")
+    set :haml, :format => :html5
+
     get '/' do
-      "wallpaper changer"
+      haml :index
     end
 
-    get '/interval/:interval' do
+    get '/interval' do
+      content_type :json
+      { interval: Configuration.interval }.to_json
+    end
+
+    post '/interval' do
       Configuration.interval = params[:interval].to_i rescue nil
-      "interval set to #{Configuration.interval} seconds"
+      content_type :json
+      { interval: Configuration.interval }.to_json
+    end
+
+    get '/wallpapers' do
+      content_type :json
+      Updater.get_expanded_configuration.to_json
     end
 
 	end

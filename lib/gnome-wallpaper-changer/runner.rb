@@ -19,7 +19,7 @@ module Gnome::Wallpaper::Changer
       end
 
       EM.next_tick do
-        Updater.schedule!
+        Updater.schedule! if Configuration.active?
       end
 
       server = Thin::Server.new '127.0.0.1', Configuration.port do
