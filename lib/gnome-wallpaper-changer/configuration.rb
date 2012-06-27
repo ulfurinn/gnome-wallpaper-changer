@@ -1,4 +1,3 @@
-require "fileutils"
 require "yaml"
 
 module Gnome::Wallpaper::Changer

@@ -1,8 +1,11 @@
+require "fileutils"
+
 require "gnome-wallpaper-changer/version"
 require "gnome-wallpaper-changer/reloader"
 require "gnome-wallpaper-changer/configuration"
 require "gnome-wallpaper-changer/controller"
 require "gnome-wallpaper-changer/updater"
+require "gnome-wallpaper-changer/resizer"
 require "gnome-wallpaper-changer/runner"
 
 module Gnome

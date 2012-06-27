@@ -19,4 +19,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "sinatra"
   gem.add_dependency "haml"
   gem.add_dependency "json"
+  gem.add_dependency "fastimage_resize"
 end

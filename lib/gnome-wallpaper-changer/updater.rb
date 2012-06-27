@@ -14,9 +14,14 @@ module Gnome::Wallpaper::Changer
         end
       end
 
+      def files
+        @files || []
+      end
+
       def update
-        files = get_active_files
-        selected = files[ rand(files.length) ]
+        @files = get_active_files
+        #@files.each { |file| Resizer.resize file }
+        selected = @files[ rand(files.length) ]
         puts "update: #{selected}"
         `gsettings set org.gnome.desktop.background picture-uri "file://#{selected}"`
         schedule!
@@ -34,7 +39,7 @@ module Gnome::Wallpaper::Changer
       end
 
       def expand_folder_config folder
-        folder[:files] = get_files_in_folder(folder[:path]) - folder[:excluded]
+        folder[:files] = get_files_in_folder(folder[:path])
         folder
       end
 

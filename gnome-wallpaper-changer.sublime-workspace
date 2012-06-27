@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"get_active_files"
+			],
+			[
+				"C",
+				"CONFIG_FILE"
+			],
+			[
+				"CO",
+				"CONFIG_FILE"
+			],
+			[
 				"tra",
 				"translation"
 			],
@@ -15,19 +27,79 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "lib/gnome-wallpaper-changer/configuration.rb",
+			"settings":
+			{
+				"buffer_size": 2311,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/gnome-wallpaper-changer/controller.rb",
+			"settings":
+			{
+				"buffer_size": 708,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/index.haml",
+			"settings":
+			{
+				"buffer_size": 388,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/javascript/updater.js",
+			"settings":
+			{
+				"buffer_size": 625,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/gnome-wallpaper-changer/runner.rb",
+			"settings":
+			{
+				"buffer_size": 712,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "gnome-wallpaper-changer.gemspec",
+			"settings":
+			{
+				"buffer_size": 866,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/gnome-wallpaper-changer/updater.rb",
+			"settings":
+			{
+				"buffer_size": 1272,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
 	{
-		"height": 180.0,
+		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
 			[
 				"inst",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 516.0
 	},
 	"console":
 	{
@@ -44,6 +116,13 @@
 	},
 	"file_history":
 	[
+		"/home/valeri/Projects/gnome-wallpaper-changer/bin/gnome-wallpaper-changer",
+		"/home/valeri/Projects/gnome-wallpaper-changer/lib/gnome-wallpaper-changer/runner.rb",
+		"/home/valeri/Projects/gnome-wallpaper-changer/lib/gnome-wallpaper-changer/updater.rb",
+		"/home/valeri/Projects/gnome-wallpaper-changer/lib/gnome-wallpaper-changer/configuration.rb",
+		"/home/valeri/Projects/gnome-wallpaper-changer/lib/gnome-wallpaper-changer/controller.rb",
+		"/home/valeri/Projects/gnome-wallpaper-changer/lib/gnome-wallpaper-changer/reloader.rb",
+		"/home/valeri/Projects/gnome-wallpaper-changer/lib/gnome-wallpaper-changer.rb",
 		"/home/valeri/Projects/snowmen/swix/services/spinlivedata_service/lib/event.rb",
 		"/home/valeri/Projects/snowmen/swix/services/spinlivedata_service/lib/keywords.rb",
 		"/home/valeri/Projects/snowmen/swix/services/swixlivedata_service/lib/keywords.rb",
@@ -174,8 +253,201 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "lib/gnome-wallpaper-changer/configuration.rb",
+					"settings":
+					{
+						"buffer_size": 2311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1154,
+								1154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 336.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/gnome-wallpaper-changer/controller.rb",
+					"settings":
+					{
+						"buffer_size": 708,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								386,
+								386
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/index.haml",
+					"settings":
+					{
+						"buffer_size": 388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								119,
+								119
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/javascript/updater.js",
+					"settings":
+					{
+						"buffer_size": 625,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								616,
+								616
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "lib/gnome-wallpaper-changer/runner.rb",
+					"settings":
+					{
+						"buffer_size": 712,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								229,
+								229
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "gnome-wallpaper-changer.gemspec",
+					"settings":
+					{
+						"buffer_size": 866,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								860,
+								860
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "lib/gnome-wallpaper-changer/updater.rb",
+					"settings":
+					{
+						"buffer_size": 1272,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								513,
+								513
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 42.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -185,7 +457,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 29.0
 	},
 	"layout":
 	{

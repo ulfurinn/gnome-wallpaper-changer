@@ -32,6 +32,19 @@ module Gnome::Wallpaper::Changer
       Updater.get_expanded_configuration.to_json
     end
 
+    get '/file' do
+      path = params[:path]
+      if Updater.files.include? path
+        if thumb = Resizer.resize(path)
+          send_file thumb
+        else
+          500
+        end
+      else
+        403
+      end
+    end
+
 	end
 
 end
