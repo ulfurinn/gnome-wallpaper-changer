@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'gnome-wallpaper-changer'
+Gnome::Wallpaper::Changer::Runner.new(ARGV).run!
