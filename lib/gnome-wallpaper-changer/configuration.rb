@@ -24,23 +24,31 @@ module Gnome::Wallpaper::Changer
 
       public
 
-      attr_accessor :interval
-      autosaving :interval
+      attr_accessor :interval, :port
+      autosaving :interval, :port
 
       CONFIG_DIR = "#{ENV['HOME']}/.config/gnome-wallpaper-changer"
       CONFIG_FILE = "#{CONFIG_DIR}/config.yml"
 
       def default_config
         {
-          interval: 60 * 10
+          interval: 60 * 10,
+          port: 12345
         }
       end
 
       def current_config
         {
           version: VERSION,
+          port: self.port,
           interval: self.interval
         }
+      end
+
+      def reset!
+        if File.exists?( CONFIG_FILE )
+          FileUtils.rm CONFIG_FILE
+        end
       end
 
       def load
@@ -55,7 +63,9 @@ module Gnome::Wallpaper::Changer
           default_config
         end
 
-        self.interval = config[:interval]
+        default_config.keys.each do |key|
+          self.send "#{key}=".to_sym, config[key]
+        end
 
         save unless File.exists?( CONFIG_FILE )
 
