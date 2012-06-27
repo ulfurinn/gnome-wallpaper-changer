@@ -12,6 +12,12 @@ module Gnome::Wallpaper::Changer
       "wallpaper changer"
     end
 
+    get '/interval/:interval' do
+      Configuration.interval = params[:interval].to_i rescue nil
+      Configuration.save
+      "interval set to #{Configuration.interval} seconds"
+    end
+
 	end
 
 end

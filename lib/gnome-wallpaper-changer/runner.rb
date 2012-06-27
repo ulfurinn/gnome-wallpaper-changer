@@ -8,14 +8,24 @@ module Gnome::Wallpaper::Changer
     end
 
     def run!
-      Thin::Server.start '0.0.0.0', 12345 do
-        use Gnome::Wallpaper::Changer::Reloader
-        run Gnome::Wallpaper::Changer::Controller
 
-        EM.next_tick {
-          Gnome::Wallpaper::Changer::Updater.schedule!
-        }
+      Configuration.load
+      if $stdin.isatty
+        puts "The updater is configured using a web interface. Go to http://localhost/12345"
       end
+
+      EM.next_tick do
+        Updater.schedule!
+      end
+
+      server = Thin::Server.new '0.0.0.0', 12345 do
+        use Reloader
+        run Controller
+      end
+      #server.pid_file = "updater.pid"
+      #server.log_file = "updater.log"
+      #server.daemonize
+      server.start
     end
 
   end

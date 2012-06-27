@@ -3,10 +3,8 @@ module Gnome::Wallpaper::Changer
 
     module ClassMethods
 
-      attr_writer :interval
-
       def schedule!
-        @last_timer = EM.add_timer self.interval do
+        @last_timer = EM.add_timer Configuration.interval do
           @last_timer = nil
           self.update
         end
@@ -15,10 +13,6 @@ module Gnome::Wallpaper::Changer
       def update
         puts "update"
         schedule!
-      end
-
-      def interval
-        @interval ||= 1
       end
 
     end
