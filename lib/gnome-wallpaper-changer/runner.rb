@@ -15,7 +15,7 @@ module Gnome::Wallpaper::Changer
 
       Configuration.load
       if $stdin.isatty
-        puts "The updater is configured using a web interface. Go to http://localhost/#{Configuration.port}"
+        puts "Go to http://localhost:#{Configuration.port} to change the settings."
       end
 
       EM.next_tick do
