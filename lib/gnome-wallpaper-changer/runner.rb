@@ -9,9 +9,12 @@ module Gnome::Wallpaper::Changer
 
     def run!
       Thin::Server.start '0.0.0.0', 12345 do
-        p env
         use Gnome::Wallpaper::Changer::Reloader
         run Gnome::Wallpaper::Changer::Controller
+
+        EM.next_tick {
+          Gnome::Wallpaper::Changer::Updater.schedule!
+        }
       end
     end
 
