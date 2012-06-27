@@ -18,13 +18,13 @@ module Gnome::Wallpaper::Changer
 
     get '/interval' do
       content_type :json
-      { interval: Configuration.interval }.to_json
+      { interval: Configuration.interval / 60 }.to_json
     end
 
     post '/interval' do
-      Configuration.interval = params[:interval].to_i rescue nil
+      Configuration.interval = params[:interval].to_i * 60 rescue nil
       content_type :json
-      { interval: Configuration.interval }.to_json
+      { interval: Configuration.interval / 60 }.to_json
     end
 
     get '/wallpapers' do

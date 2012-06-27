@@ -27,8 +27,8 @@ module Gnome::Wallpaper::Changer
       attr_accessor :interval, :port, :active, :folders, :files
 
       def interval= value
-        @interval = if value < 1
-          1
+        @interval = if value < 60
+          60
         else
           value
         end
