@@ -21,7 +21,66 @@ Updater.wire_interval_field = function(input) {
 };
 
 Updater.wire_file_checkbox = function(checkbox, file, folder) {
+	if(folder.excluded.indexOf(file) == -1)
+		checkbox.attr('checked', true);
+	checkbox.change(function(e) {
+		var url = e.target.checked ? '/include' : '/exclude';
+		$.ajax({
+			type: 'POST',
+			url: url,
+			data: {
+				folder: folder.path,
+				file: file
+			}
+		}).done(function(){
+			checkbox.stop().css("opacity", 0).animate({ opacity: 1 }, 500);
+		});
 
+	});
+};
+
+Updater.make_include_all_button = function( container, folderDiv, folder ) {
+	var container = $('<span>');
+	var button = $('<input>').attr('type', 'button').val('include all');
+	button.click(function(){
+		$.ajax({
+			type: 'POST',
+			url: '/include',
+			data: { folder: folder.path }
+		}).done(function(){
+			$.ajax({
+				type: 'GET',
+				url: '/wallpapers',
+				data: { folder: folder.path }
+			}).done(function(ret){
+				Updater.build_folder(container, ret, folderDiv);
+			});
+		});
+	});
+	container.append( button );
+	return container;
+};
+
+Updater.make_exclude_all_button = function( container, folderDiv, folder ) {
+	var container = $('<span>');
+	var button = $('<input>').attr('type', 'button').val('exclude all');
+	button.click(function(){
+		$.ajax({
+			type: 'POST',
+			url: '/exclude',
+			data: { folder: folder.path }
+		}).done(function(){
+			$.ajax({
+				type: 'GET',
+				url: '/wallpapers',
+				data: { folder: folder.path }
+			}).done(function(ret){
+				Updater.build_folder(container, ret, folderDiv);
+			});
+		});
+	});
+	container.append( button );
+	return container;
 };
 
 Updater.fetch_interval = function(input) {
@@ -33,23 +92,36 @@ Updater.fetch_interval = function(input) {
 	});
 };
 
+Updater.build_folder = function(container, folder, existingFolderDiv) {
+	var folderDiv = $("<div>");
+	folderDiv.addClass('folder').
+	append( $('<div>').text(folder.path).
+		append( Updater.make_include_all_button( container, folderDiv, folder ) ).
+		append( Updater.make_exclude_all_button( container, folderDiv, folder ) ) );
+	folder.files.forEach(function(file){
+		var checkbox = $('<input>').attr('type', 'checkbox');
+		var fileDiv = $("<div>").addClass('file').append(
+			$("<img>").
+			attr('src', '/file?path=' + encodeURI(file))
+			).append( checkbox );
+		Updater.wire_file_checkbox( checkbox, file, folder );
+		folderDiv.append( fileDiv );
+	});
+	if(existingFolderDiv) {
+		existingFolderDiv.replaceWith(folderDiv);
+		folderDiv.css("background-color", "#55FF55").animate({ backgroundColor: $.Color("#FFFFFF")}, 500);
+	}
+	else
+		container.append(folderDiv);
+};
+
 Updater.fetch_wallpapers = function(container) {
 	$.ajax({
 		type: 'GET',
 		url: '/wallpapers'
 	}).done(function(ret){
 		ret.folders.forEach(function(folder){
-			var folderDiv = $("<div>").addClass('folder').append( $('<div>').text(folder.path) );
-			folder.files.forEach(function(file){
-				var checkbox = $('<input>').attr('type', 'checkbox');
-				var fileDiv = $("<div>").addClass('file').append(
-					$("<img>").
-					attr('src', '/file?path=' + encodeURI(file))
-				).append( checkbox );
-				Updater.wire_file_checkbox( checkbox, file, folder );
-				folderDiv.append( fileDiv );
-			});
-			container.append(folderDiv);
+			Updater.build_folder(container, folder);
 		});
 	});
 };

@@ -95,6 +95,54 @@ module Gnome::Wallpaper::Changer
         end
       end
 
+      def include_file folder, file
+        # => basic sanity check...
+        if File.dirname(file) == folder
+          folder = folders.find { |f| f[:path] == folder }
+          return false unless folder
+          folder[:excluded].delete file
+          save!
+          true
+        else
+          false
+        end
+      end
+
+      def include_all folder
+        folder = folders.find { |f| f[:path] == folder }
+        if folder
+          folder[:excluded] = []
+          save!
+          true
+        else
+          false
+        end
+      end
+
+      def exclude_file folder, file
+        # => basic sanity check...
+        if File.dirname(file) == folder
+          folder = folders.find { |f| f[:path] == folder }
+          return false unless folder
+          folder[:excluded] << file unless folder[:excluded].include?( file )
+          save!
+          true
+        else
+          false
+        end
+      end
+
+      def exclude_all folder
+        folder = folders.find { |f| f[:path] == folder }
+        if folder
+          folder[:excluded] = Updater.get_files_in_folder folder[:path]
+          save!
+          true
+        else
+          false
+        end
+      end
+
       def install_autostart!
 
       end

@@ -25,6 +25,7 @@ module Gnome::Wallpaper::Changer
       end
 
       server = Thin::Server.new '127.0.0.1', Configuration.port do
+        use Rack::CommonLogger
         use Reloader
         run Controller
       end

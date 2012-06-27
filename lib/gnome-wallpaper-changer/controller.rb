@@ -27,14 +27,34 @@ module Gnome::Wallpaper::Changer
       { interval: Configuration.interval / 60 }.to_json
     end
 
+    post '/include' do
+      result = if params[:file]
+        Configuration.include_file params[:folder], params[:file]
+      else
+        Configuration.include_all params[:folder]
+      end
+      content_type :json
+      { result: result }.to_json
+    end
+
+    post '/exclude' do
+      result = if params[:file]
+        Configuration.exclude_file params[:folder], params[:file]
+      else
+        Configuration.exclude_all params[:folder]
+      end
+      content_type :json
+      { result: result }.to_json
+    end
+
     get '/wallpapers' do
       content_type :json
-      Updater.get_expanded_configuration.to_json
+      Updater.get_expanded_configuration(params[:folder]).to_json
     end
 
     get '/file' do
       path = params[:path]
-      if Updater.files.include? path
+      if Updater.known_file? path
         if thumb = Resizer.resize(path)
           send_file thumb
         else
