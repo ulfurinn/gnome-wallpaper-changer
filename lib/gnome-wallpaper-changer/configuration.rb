@@ -42,9 +42,13 @@ module Gnome::Wallpaper::Changer
           port: 12345,
           active: false,
           folders: [ {
-            path: ENV['HOME'] + '/Pictures',
-            excluded: []
-          } ],
+              path: ENV['HOME'] + '/Pictures',
+              excluded: []
+            }, {
+              path: '/usr/share/backgrounds',
+              excluded: []
+            }
+          ],
           files: [ ]
         }
       end
