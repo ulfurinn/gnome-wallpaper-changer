@@ -9,10 +9,15 @@
 		%link{ :type => 'text/css', :rel => 'stylesheet', :href => '/stylesheets/smoothness/jquery-ui-1.8.21.custom.css' }
 	%body{ :onload => "Updater.init()" }
 		%h1 Wallpaper changer
+		.autostart-enabled
+			%form{ :action => '/autostart', :method => 'POST' }
+				%input{ :type => 'checkbox', :name => 'autostart', :id => 'autostart' }
+				%label{ :for => 'autostart' } Autostart
 		.rotation-interval
 			%form{ :action => '/interval', :method => 'POST' }
-				%label{ :for => 'interval' } Rotation interval: 
+				%label{ :for => 'interval' } Rotation interval (0 to disable): 
 				%input{ :name => 'interval', :id => 'interval' }
+				minutes
 		.add-folder
 			%form{ :action => '/add', :method => 'POST' }
 				%label{ :for => 'folder' } Add an image directory: 

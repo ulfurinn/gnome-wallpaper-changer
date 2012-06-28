@@ -9,6 +9,11 @@ module Gnome
       CONFIG_FILE = "#{CONFIG_DIR}/config.yml"
       THUMB_DIR = "#{CONFIG_DIR}/thumbs"
 
+      PID_FILE = "#{CONFIG_DIR}/updater.pid"
+      LOG_FILE = "#{CONFIG_DIR}/updater.log"
+
+      AUTOSTART = "#{ENV['HOME']}/.config/autostart/gnome-wallpaper-changer.desktop"
+
     end
   end
 end

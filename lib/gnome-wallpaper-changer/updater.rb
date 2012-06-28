@@ -17,7 +17,7 @@ module Gnome::Wallpaper::Changer
       def reschedule!
         EM.cancel_timer @last_timer if @last_timer
         @last_timer = nil
-        schedule!
+        schedule! if Configuration.active?
       end
 
       def files
@@ -66,8 +66,7 @@ module Gnome::Wallpaper::Changer
       end
 
       def expand_folder_config folder
-        folder[:files] = get_files_in_folder(folder[:path])
-        folder
+        { files: get_files_in_folder(folder[:path]) }.merge folder
       end
 
       def get_files_in_folder path

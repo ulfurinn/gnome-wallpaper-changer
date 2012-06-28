@@ -1,15 +1,30 @@
 var Updater =  { };
 
 Updater.init = function() {
-	this.wire_interval_field( $("#interval") );
+	this.wire_autostart( $("#autostart") );
+	this.wire_interval_field( $(".rotation-interval form"), $("#interval") );
 	this.wire_add_folder_form( $(".add-folder form"), $("#folder") );
 
+	this.fetch_autostart( $("#autostart") );
 	this.fetch_interval( $("#interval") );
 	this.fetch_wallpapers( $("#wallpapers") );
 };
 
-Updater.wire_interval_field = function(input) {
-	input.blur(function() {
+Updater.wire_autostart = function( input ) {
+	input.change(function(e){
+		$.ajax({
+			type: 'POST',
+			url: '/autostart',
+			data: {enable: e.target.checked}
+		}).done(function(ret) {
+			input.attr('checked', ret.enabled);
+			input.stop().css("opacity", 0).animate({ opacity: 1 }, 500);
+		});
+	});
+};
+
+Updater.wire_interval_field = function( form, input ) {
+	form.submit(function() {
 		$.ajax({
 			type: 'POST',
 			url: '/interval',
@@ -18,6 +33,7 @@ Updater.wire_interval_field = function(input) {
 			input.val(ret.interval);
 			input.stop().css("background-color", "#55FF55").animate({ backgroundColor: $.Color("#FFFFFF")}, 500);
 		});
+		return false;
 	});
 };
 
@@ -128,6 +144,15 @@ Updater.make_remove_folder_button = function( container, folderDiv, folder ) {
 	});
 	container.append( button );
 	return container;
+};
+
+Updater.fetch_autostart = function(input) {
+	$.ajax({
+		type: 'GET',
+		url: '/autostart'
+	}).done(function(ret) {
+		input.attr('checked', ret.enabled);
+	});
 };
 
 Updater.fetch_interval = function(input) {

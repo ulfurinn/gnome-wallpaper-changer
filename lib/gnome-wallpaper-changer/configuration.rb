@@ -156,15 +156,25 @@ module Gnome::Wallpaper::Changer
       end
 
       def install_autostart!
-
+        bin = Gem.bin_path "gnome-wallpaper-changer", "gnome-wallpaper-changer"
+        File.open AUTOSTART, "w" do |io|
+          io.puts "[Desktop Entry]"
+          io.puts "Type=Application"
+          io.puts "Terminal=false"
+          io.puts "Name=Wallpaper Changer"
+          io.puts "Comment=Periodically changes the Gnome wallpaper"
+          io.puts "Exec=#{bin} --autostart"
+        end
+      rescue Gem::GemNotFoundException => e
+        puts "Cannot activate autostart with a development version"
       end
 
       def uninstall_autostart!
-
+        FileUtils.rm AUTOSTART if autostart_installed?
       end
 
       def autostart_installed?
-
+        File.exists? AUTOSTART
       end
 
     end

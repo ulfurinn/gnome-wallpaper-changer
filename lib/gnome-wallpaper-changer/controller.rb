@@ -16,16 +16,38 @@ module Gnome::Wallpaper::Changer
       haml :index
     end
 
+    get '/autostart' do
+      content_type :json
+      { enabled: Configuration.autostart_installed? }.to_json
+    end
+
+    post '/autostart' do
+      if params[:enable] == "true"
+        Configuration.install_autostart!
+      else
+        Configuration.uninstall_autostart!
+      end
+      content_type :json
+      { enabled: Configuration.autostart_installed? }.to_json
+    end
+
     get '/interval' do
       content_type :json
-      { interval: Configuration.interval / 60 }.to_json
+      { interval: Configuration.active? ? Configuration.interval / 60 : 0 }.to_json
     end
 
     post '/interval' do
-      Configuration.interval = params[:interval].to_i * 60 rescue nil
+      interval = params[:interval].to_i
+      if interval > 0
+        Configuration.active = true
+        Configuration.interval = interval * 60 rescue nil
+      else
+        Configuration.active = false
+      end
       Updater.reschedule!
+      
       content_type :json
-      { interval: Configuration.interval / 60 }.to_json
+      { interval: Configuration.active? ? Configuration.interval / 60 : 0 }.to_json
     end
 
     post '/include' do
@@ -49,7 +71,11 @@ module Gnome::Wallpaper::Changer
     end
 
     post '/add' do
-      result = Configuration.add_folder params[:folder]
+      folder = params[:folder]
+      if folder.empty? || !Dir.exists?( folder )
+        return nil.to_json
+      end
+      result = Configuration.add_folder folder
       content_type :json
       if result
         Updater.get_expanded_configuration(params[:folder])
