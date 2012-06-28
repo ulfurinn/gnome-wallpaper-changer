@@ -36,9 +36,6 @@ module Gnome::Wallpaper::Changer
       autosaving :interval, :port, :active, :folders, :files
       alias_method :active?, :active
 
-      CONFIG_DIR = "#{ENV['HOME']}/.config/gnome-wallpaper-changer"
-      CONFIG_FILE = "#{CONFIG_DIR}/config.yml"
-
       def default_config
         {
           interval: 60 * 10,
