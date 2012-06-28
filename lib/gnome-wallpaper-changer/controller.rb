@@ -139,7 +139,7 @@ module Gnome::Wallpaper::Changer
       term = params[:term]
       lookup_dir = term.gsub /[^\/]+$/, ""
       partial = term[ ( term.rindex('/') + 1 )..-1 ]
-      Pathname.new(lookup_dir).children.select { |child| child.directory? && child.basename.to_s.index( partial ) == 0 }.map(&:to_s).sort.to_json
+      Pathname.new(lookup_dir).children.select { |child| child.directory? && child.basename.to_s.index( partial ) == 0 && child.basename.to_s[0] != '.' }.map(&:to_s).sort_by(&:downcase).to_json
     end
 
 	end
