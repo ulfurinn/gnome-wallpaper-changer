@@ -13,7 +13,7 @@ A utility to periodically rotate the wallpaper in Gnome.
 
 ## Usage
 
-The changer runs as a daemon. It has a built-in web server proving the configuration interface.
+The changer runs as a daemon. It has a built-in web server providing the configuration interface.
 
 After installation, run:
 
@@ -29,13 +29,17 @@ You can add or remove them or selectively exclude specific files.
 
 You can set the changer to run automatically at login; this is disabled by default.
 
+If something goes wrong, you can reset your configuration and start from scratch by running:
+
+	gnome-wallpaper-changer --reset
+
 To stop the changer, run:
 
 	gnome-wallpaper-changer --kill
 
 ## Known issues and limitations
 
-* Chrome sometimes shows incorrect previews, apparently due to its caching strategy.
+* Chrome sometimes mixes up the image previews, apparently due to its caching strategy.
 * Directories are not scanned recursively.
 
 ## Contributing
