@@ -104,9 +104,15 @@ Updater.build_folder = function(container, folder, existingFolderDiv) {
 	folder.files.forEach(function(file){
 		var checkbox = $('<input>').attr('type', 'checkbox');
 		var fileDiv = $("<div>").addClass('file').append(
-			$("<img>").
-			attr('src', '/file?path=' + encodeURI(file))
-			).append( checkbox );
+			$("<img>").attr('src', '/file?path=' + encodeURI(file)).
+			dblclick(function(){
+				$.ajax({
+					type: 'POST',
+					url: '/change',
+					data: { file: file }
+				})
+			})
+		).append( checkbox );
 		Updater.wire_file_checkbox( checkbox, file, folder );
 		filesDiv.append( fileDiv );
 	});

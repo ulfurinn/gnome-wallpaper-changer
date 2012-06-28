@@ -21,14 +21,24 @@ module Gnome::Wallpaper::Changer
       def update
         @files = get_active_files
         #@files.each { |file| Resizer.resize file }
-        if @files.empty?
-          `gsettings set org.gnome.desktop.background picture-uri ""`
+        do_update_wallpaper( if @files.empty?
+          nil
         else
-          selected = @files[ rand(files.length) ]
-          puts "update: #{selected}"
-          `gsettings set org.gnome.desktop.background picture-uri "file://#{selected}"`
-        end
+          @files[ rand(files.length) ]
+        end )
         schedule!
+      end
+
+      def force_update path
+        EM.cancel_timer @last_timer if @last_timer
+        @last_timer = nil
+        do_update_wallpaper path
+        schedule!
+      end
+
+      def do_update_wallpaper path
+        puts "update: #{path || '-'}"
+        `gsettings set org.gnome.desktop.background picture-uri "#{path ? 'file://' + path : ''}"`
       end
 
       def get_active_files

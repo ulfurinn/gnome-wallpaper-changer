@@ -47,6 +47,14 @@ module Gnome::Wallpaper::Changer
       { result: result }.to_json
     end
 
+    post '/change' do
+      path = params[:file]
+      if Updater.known_file? path
+        Updater.force_update path
+      end
+      ""
+    end
+
     get '/wallpapers' do
       content_type :json
       Updater.get_expanded_configuration(params[:folder]).to_json
