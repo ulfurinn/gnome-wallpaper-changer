@@ -9,6 +9,26 @@ module Gnome::Wallpaper::Changer
       __FILE__
     end
 
+    def sanitize_path folder
+      if folder.empty?
+        return nil
+      end
+
+      folder_pn = Pathname.new folder
+
+      if folder_pn.relative?
+        return nil
+      end
+
+      folder_pn = folder_pn.expand_path
+
+      if !folder_pn.exist?
+        return nil
+      end
+
+      folder_pn.to_s
+    end
+
     set :root, File.join(File.dirname(main_file), "..", "..")
     set :haml, :format => :html5
 
@@ -71,10 +91,10 @@ module Gnome::Wallpaper::Changer
     end
 
     post '/add' do
-      folder = params[:folder]
-      if folder.empty? || !Dir.exists?( folder )
-        return nil.to_json
-      end
+
+      folder = sanitize_path params[:folder]
+      return nil.to_json if folder.nil?
+
       result = Configuration.add_folder folder
       content_type :json
       if result
