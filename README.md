@@ -8,7 +8,7 @@ A utility to periodically rotate the wallpaper in Gnome.
 
 ### Prerequisites
 
-* Ruby, properly setup to build native gems
+* Ruby 1.9.3, properly setup to build native gems
 * libgd2
 
 ## Usage
