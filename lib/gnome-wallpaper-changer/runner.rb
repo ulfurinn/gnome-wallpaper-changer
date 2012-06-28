@@ -50,10 +50,10 @@ module Gnome::Wallpaper::Changer
         File.open PID_FILE, "w" do |io|
           io.puts Process.pid
         end
-        FileUtils.rm LOG_FILE
+        FileUtils.rm LOG_FILE if File.exists?( LOG_FILE )
         Daemonize.redirect_io LOG_FILE
       else
-        FileUtils.rm LOG_FILE
+        FileUtils.rm LOG_FILE if File.exists?( LOG_FILE )
         server.pid_file = PID_FILE
         server.log_file = LOG_FILE
         server.daemonize
