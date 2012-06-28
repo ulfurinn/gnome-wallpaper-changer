@@ -1,6 +1,7 @@
 !!!
 %html
 	%head
+		%title Wallpaper changer settings
 		%script{ :src => '/javascript/jquery-1.7.2.min.js' }
 		%script{ :src => '/javascript/jquery.color.js' }
 		%script{ :src => '/javascript/jquery-ui-1.8.21.custom.min.js' }
@@ -9,17 +10,31 @@
 		%link{ :type => 'text/css', :rel => 'stylesheet', :href => '/stylesheets/smoothness/jquery-ui-1.8.21.custom.css' }
 	%body{ :onload => "Updater.init()" }
 		%h1 Wallpaper changer
-		.autostart-enabled
+		.control.autostart-enabled
 			%form{ :action => '/autostart', :method => 'POST' }
-				%input{ :type => 'checkbox', :name => 'autostart', :id => 'autostart' }
-				%label{ :for => 'autostart' } Autostart
-		.rotation-interval
+				.left
+					%label{ :for => 'autostart' } Autostart
+				.right
+					%input{ :type => 'checkbox', :name => 'autostart', :id => 'autostart' }
+		.control.rotation-interval
 			%form{ :action => '/interval', :method => 'POST' }
-				%label{ :for => 'interval' } Rotation interval (0 to disable): 
-				%input{ :name => 'interval', :id => 'interval' }
-				minutes
-		.add-folder
+				.left
+					%label{ :for => 'interval' } Rotation interval (0 to disable): 
+				.right
+					%input{ :name => 'interval', :id => 'interval' }
+					minutes
+		.control.add-folder
 			%form{ :action => '/add', :method => 'POST' }
-				%label{ :for => 'folder' } Add an image directory: 
-				%input{ :name => 'folder', :id => 'folder' }
+				.left
+					%label{ :for => 'folder' } Add an image directory: 
+				.right
+					%input{ :name => 'folder', :id => 'folder' }
 		#wallpapers
+		%footer
+			Daemon process ID:
+			= Process.pid
+			%br
+			Config directory:
+			= Gnome::Wallpaper::Changer::CONFIG_DIR
+			%br
+			%a{ :href => 'https://github.com/ulfurinn/gnome-wallpaper-changer' } @ github

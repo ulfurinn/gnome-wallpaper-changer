@@ -167,7 +167,7 @@ Updater.fetch_interval = function(input) {
 Updater.build_folder = function(container, folder, existingFolderDiv) {
 	var folderDiv = $("<div>");
 	folderDiv.addClass('folder').
-	append( $('<div>').addClass('top-bar').text(folder.path).
+	append( $('<div>').addClass('top-bar').append($("<div>").addClass("folder-name").text(folder.path)).
 		append( Updater.make_include_all_button( container, folderDiv, folder ) ).
 		append( Updater.make_exclude_all_button( container, folderDiv, folder ) ).
 		append( Updater.make_remove_folder_button( container, folderDiv, folder ) )
