@@ -14,6 +14,12 @@ module Gnome::Wallpaper::Changer
         end
       end
 
+      def reschedule!
+        EM.cancel_timer @last_timer if @last_timer
+        @last_timer = nil
+        schedule!
+      end
+
       def files
         @files || []
       end
@@ -30,10 +36,8 @@ module Gnome::Wallpaper::Changer
       end
 
       def force_update path
-        EM.cancel_timer @last_timer if @last_timer
-        @last_timer = nil
         do_update_wallpaper path
-        schedule!
+        reschedule!
       end
 
       def do_update_wallpaper path

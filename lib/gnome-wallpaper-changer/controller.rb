@@ -23,6 +23,7 @@ module Gnome::Wallpaper::Changer
 
     post '/interval' do
       Configuration.interval = params[:interval].to_i * 60 rescue nil
+      Updater.reschedule!
       content_type :json
       { interval: Configuration.interval / 60 }.to_json
     end
@@ -45,6 +46,17 @@ module Gnome::Wallpaper::Changer
       end
       content_type :json
       { result: result }.to_json
+    end
+
+    post '/add' do
+      Configuration.add_folder params[:folder]
+      content_type :json
+      Updater.get_expanded_configuration(params[:folder]).to_json
+    end
+
+    post '/remove' do
+      Configuration.remove_folder params[:folder]
+      ''
     end
 
     post '/change' do

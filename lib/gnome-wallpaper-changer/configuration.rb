@@ -140,6 +140,16 @@ module Gnome::Wallpaper::Changer
         end
       end
 
+      def add_folder folder
+        folders << { path: folder, excluded: [] }
+        save!
+      end
+
+      def remove_folder folder
+        folders.reject! { |f| f[:path] == folder }
+        save!
+      end
+
       def install_autostart!
 
       end

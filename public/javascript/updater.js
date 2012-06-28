@@ -2,6 +2,7 @@ var Updater =  { };
 
 Updater.init = function() {
 	this.wire_interval_field( $("#interval") );
+	this.wire_add_folder_form( $(".add-folder form"), $("#folder") );
 
 	this.fetch_interval( $("#interval") );
 	this.fetch_wallpapers( $("#wallpapers") );
@@ -17,6 +18,20 @@ Updater.wire_interval_field = function(input) {
 			input.val(ret.interval);
 			input.stop().css("background-color", "#55FF55").animate({ backgroundColor: $.Color("#FFFFFF")}, 500);
 		});
+	});
+};
+
+Updater.wire_add_folder_form = function( form, input ) {
+	form.submit(function(){
+		$.ajax({
+			type: 'POST',
+			url: '/add',
+			data: { folder: input.val() }
+		}).done(function( folder ) {
+			input.val('');
+			Updater.build_folder( $("#wallpapers"), folder );
+		});
+		return false;
 	});
 };
 
@@ -53,7 +68,7 @@ Updater.make_include_all_button = function( container, folderDiv, folder ) {
 				url: '/wallpapers',
 				data: { folder: folder.path }
 			}).done(function(ret){
-				Updater.build_folder(container, ret, folderDiv);
+				Updater.build_folder( container, ret, folderDiv );
 			});
 		});
 		return false;
@@ -85,6 +100,29 @@ Updater.make_exclude_all_button = function( container, folderDiv, folder ) {
 	return container;
 };
 
+Updater.make_remove_folder_button = function( container, folderDiv, folder ) {
+	var container = $('<div>').addClass('command');
+	var button = $('<a>').attr('href', '#').text('remove folder');
+	button.click(function(){
+		$.ajax({
+			type: 'POST',
+			url: '/remove',
+			data: { folder: folder.path }
+		}).done(function(){
+			$.ajax({
+				type: 'GET',
+				url: '/wallpapers',
+				data: { folder: folder.path }
+			}).done(function(){
+				folderDiv.remove();
+			});
+		});
+		return false;
+	});
+	container.append( button );
+	return container;
+};
+
 Updater.fetch_interval = function(input) {
 	$.ajax({
 		type: 'GET',
@@ -99,7 +137,9 @@ Updater.build_folder = function(container, folder, existingFolderDiv) {
 	folderDiv.addClass('folder').
 	append( $('<div>').addClass('top-bar').text(folder.path).
 		append( Updater.make_include_all_button( container, folderDiv, folder ) ).
-		append( Updater.make_exclude_all_button( container, folderDiv, folder ) ) );
+		append( Updater.make_exclude_all_button( container, folderDiv, folder ) ).
+		append( Updater.make_remove_folder_button( container, folderDiv, folder ) )
+	);
 	var filesDiv = $('<div>').addClass('wallpaper-list');
 	folder.files.forEach(function(file){
 		var checkbox = $('<input>').attr('type', 'checkbox');

@@ -11,4 +11,8 @@
 			%form{ :action => '/interval', :method => 'POST' }
 				%label{ :for => 'interval' } Rotation interval: 
 				%input{ :name => 'interval', :id => 'interval' }
+		.add-folder
+			%form{ :action => '/add', :method => 'POST' }
+				%label{ :for => 'folder' } Add an image directory: 
+				%input{ :name => 'folder', :id => 'folder' }
 		#wallpapers
