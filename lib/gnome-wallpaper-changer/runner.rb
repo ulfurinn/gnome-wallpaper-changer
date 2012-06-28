@@ -16,13 +16,18 @@ module Gnome::Wallpaper::Changer
         Configuration.reset!
       end
 
-      if @options[:kill]
-        Thin::Server.kill PID_FILE, 0
+      if @options[:kill] || @options[:autostart]
+        Thin::Server.kill PID_FILE, 0 if File.exists?( PID_FILE )
         FileUtils.rm PID_FILE if File.exists?( PID_FILE )
-        exit
+        exit if @options[:kill]
       end
 
       Configuration.load
+
+      if @options[:port]
+        Configuration.port = @options[:port]
+      end
+
       if $stdin.isatty
         puts "Go to http://localhost:#{Configuration.port} to change the settings."
       end
