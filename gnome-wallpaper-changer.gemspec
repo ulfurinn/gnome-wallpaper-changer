@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["ulfurinn@ulfurinn.net"]
   gem.description   = %q{A wallpaper rotation daemon with a browser-based interface.}
   gem.summary       = %q{A wallpaper rotation daemon with a browser-based interface.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/ulfurinn/gnome-wallpaper-changer"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
