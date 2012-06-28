@@ -10,6 +10,8 @@ module Gnome::Wallpaper::Changer
 
     def run!
 
+      FileUtils.rm LOG_FILE
+
       parse_options
 
       if @options[:reset]
