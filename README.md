@@ -22,7 +22,7 @@ After installation, run:
 Then go to http://localhost:12345.
 You can override the port using the `--port` option; this setting will be preserved for future runs.
 
-The wallpaper rotation will be initially disabled; set the interval to a non-zero value to enable.
+The wallpaper rotation will be initially disabled; set the interval to a non-zero value to enable. Double-click an image to use it immediately.
 
 GWChanger looks for wallpaper images in several directories; the default ones are `/usr/share/backgrounds` and `~/Pictures`.
 You can add or remove them or selectively exclude specific files.
