@@ -68,6 +68,7 @@ module Gnome::Wallpaper::Changer
         if File.exists?( CONFIG_FILE )
           FileUtils.rm CONFIG_FILE
         end
+        uninstall_autostart!
       end
 
       def load
