@@ -13,7 +13,7 @@ A utility to periodically rotate the wallpaper in Gnome.
 
 ## Usage
 
-The changer runs as a daemon. It has a built-in web server providing the configuration interface.
+GWChanger runs as a daemon. It has a built-in web server providing the configuration interface.
 
 After installation, run:
 
@@ -24,16 +24,16 @@ You can override the port using the `--port` option; this setting will be preser
 
 The wallpaper rotation will be initially disabled; set the interval to a non-zero value to enable.
 
-The changer looks for wallpaper images in several directories; the default ones are `/usr/share/backgrounds` and `~/Pictures`.
+GWChanger looks for wallpaper images in several directories; the default ones are `/usr/share/backgrounds` and `~/Pictures`.
 You can add or remove them or selectively exclude specific files.
 
-You can set the changer to run automatically at login; this is disabled by default.
+You can set GWChanger to run automatically at login; this is disabled by default.
 
 If something goes wrong, you can reset your configuration and start from scratch by running:
 
 	gnome-wallpaper-changer --reset
 
-To stop the changer, run:
+To stop the daemon, run:
 
 	gnome-wallpaper-changer --kill
 
@@ -41,6 +41,10 @@ To stop the changer, run:
 
 * Chrome sometimes mixes up the image previews, apparently due to its caching strategy.
 * Directories are not scanned recursively.
+
+### Ruby managers and autostart
+
+Multiple Ruby managers, such as RVM, heavily modify the environment in order to work. This may prevent the autostarted script from locating the correct Ruby and installed gems. GWChanger will detect RVM and try to generate a wrapper with a fixed environment, but alternative managers are not supported at this point.
 
 ## Contributing
 
