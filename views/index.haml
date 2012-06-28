@@ -7,7 +7,8 @@
 		%link{ :type => 'text/css', :rel => 'stylesheet', :href => '/stylesheets/updater.css' }
 	%body{ :onload => "Updater.init()" }
 		%h1 Wallpaper changer
-		%form{ :action => '/interval', :method => 'POST' }
-			%label{ :for => 'interval' } Rotation interval: 
-			%input{ :name => 'interval', :id => 'interval' }
+		.rotation-interval
+			%form{ :action => '/interval', :method => 'POST' }
+				%label{ :for => 'interval' } Rotation interval: 
+				%input{ :name => 'interval', :id => 'interval' }
 		#wallpapers

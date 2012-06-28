@@ -1,3 +1,16 @@
+body {
+	font-family: Tahoma, sans-serif;
+	font-size: 70%;
+}
+
+.rotation-interval input {
+	border: 1px solid black;
+	text-align: right;
+	padding-right: 0.5em;
+	padding-left: 0.5em;
+	width: 3em;
+}
+
 .file {
 	display: inline-block;
 	position: relative;
@@ -8,4 +21,22 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
+}
+
+.folder .command {
+	display: inline-block;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.folder .top-bar {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	padding: 0.5em;
+	border: 1px solid silver;
+	background-color: #eee;
+}
+
+.folder .wallpaper-list {
+	margin-left: 2em;
 }

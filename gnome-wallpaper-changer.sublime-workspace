@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"bu",
+				"build_folder"
+			],
+			[
+				"ch",
+				"checked"
+			],
+			[
+				"wire",
+				"wire_file_checkbox"
+			],
+			[
+				"thumb",
+				"thumb_path"
+			],
+			[
+				"file",
+				"fileDiv"
+			],
+			[
+				"folder",
+				"folderDiv"
+			],
+			[
+				"fetc",
+				"fetch_wallpapers"
+			],
+			[
 				"get",
 				"get_active_files"
 			],
@@ -31,7 +59,7 @@
 			"file": "lib/gnome-wallpaper-changer/configuration.rb",
 			"settings":
 			{
-				"buffer_size": 2311,
+				"buffer_size": 3468,
 				"line_ending": "Unix"
 			}
 		},
@@ -39,7 +67,24 @@
 			"file": "lib/gnome-wallpaper-changer/controller.rb",
 			"settings":
 			{
-				"buffer_size": 708,
+				"buffer_size": 1470,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/gnome-wallpaper-changer/resizer.rb",
+			"settings":
+			{
+				"buffer_size": 733,
+				"line_ending": "Unix",
+				"name": "resizer.rb"
+			}
+		},
+		{
+			"file": "public/stylesheets/updater.css",
+			"settings":
+			{
+				"buffer_size": 146,
 				"line_ending": "Unix"
 			}
 		},
@@ -47,7 +92,7 @@
 			"file": "views/index.haml",
 			"settings":
 			{
-				"buffer_size": 388,
+				"buffer_size": 492,
 				"line_ending": "Unix"
 			}
 		},
@@ -55,7 +100,7 @@
 			"file": "public/javascript/updater.js",
 			"settings":
 			{
-				"buffer_size": 625,
+				"buffer_size": 3266,
 				"line_ending": "Unix"
 			}
 		},
@@ -63,7 +108,7 @@
 			"file": "lib/gnome-wallpaper-changer/runner.rb",
 			"settings":
 			{
-				"buffer_size": 712,
+				"buffer_size": 743,
 				"line_ending": "Unix"
 			}
 		},
@@ -71,7 +116,7 @@
 			"file": "gnome-wallpaper-changer.gemspec",
 			"settings":
 			{
-				"buffer_size": 866,
+				"buffer_size": 906,
 				"line_ending": "Unix"
 			}
 		},
@@ -79,7 +124,15 @@
 			"file": "lib/gnome-wallpaper-changer/updater.rb",
 			"settings":
 			{
-				"buffer_size": 1272,
+				"buffer_size": 1895,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/gnome-wallpaper-changer.rb",
+			"settings":
+			{
+				"buffer_size": 425,
 				"line_ending": "Unix"
 			}
 		}
@@ -87,7 +140,7 @@
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 333.0,
 		"selected_items":
 		[
 			[
@@ -99,7 +152,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 516.0
+		"width": 453.0
 	},
 	"console":
 	{
@@ -253,7 +306,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -261,15 +314,15 @@
 					"file": "lib/gnome-wallpaper-changer/configuration.rb",
 					"settings":
 					{
-						"buffer_size": 2311,
+						"buffer_size": 3468,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1154,
-								1154
+								3206,
+								3206
 							]
 						],
 						"settings":
@@ -279,7 +332,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 336.0,
+						"translation.y": 1581.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -289,15 +342,15 @@
 					"file": "lib/gnome-wallpaper-changer/controller.rb",
 					"settings":
 					{
-						"buffer_size": 708,
+						"buffer_size": 1470,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								386,
-								386
+								1213,
+								1213
 							]
 						],
 						"settings":
@@ -307,25 +360,78 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 210.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "views/index.haml",
+					"file": "lib/gnome-wallpaper-changer/resizer.rb",
 					"settings":
 					{
-						"buffer_size": 388,
+						"buffer_size": 733,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								119,
-								119
+								448,
+								448
+							]
+						],
+						"settings":
+						{
+							"auto_name": "resizer.rb",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/stylesheets/updater.css",
+					"settings":
+					{
+						"buffer_size": 146,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								63,
+								63
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/index.haml",
+					"settings":
+					{
+						"buffer_size": 492,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								255,
+								255
 							]
 						],
 						"settings":
@@ -339,101 +445,46 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "public/javascript/updater.js",
 					"settings":
 					{
-						"buffer_size": 625,
+						"buffer_size": 3266,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								616,
-								616
+								2916,
+								2916
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "lib/gnome-wallpaper-changer/runner.rb",
-					"settings":
-					{
-						"buffer_size": 712,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								229,
-								229
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "gnome-wallpaper-changer.gemspec",
-					"settings":
-					{
-						"buffer_size": 866,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								860,
-								860
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1179.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "lib/gnome-wallpaper-changer/updater.rb",
+					"file": "lib/gnome-wallpaper-changer/runner.rb",
 					"settings":
 					{
-						"buffer_size": 1272,
+						"buffer_size": 743,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								513,
-								513
+								542,
+								542
 							]
 						],
 						"settings":
@@ -443,7 +494,89 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 42.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "gnome-wallpaper-changer.gemspec",
+					"settings":
+					{
+						"buffer_size": 906,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								900,
+								900
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "lib/gnome-wallpaper-changer/updater.rb",
+					"settings":
+					{
+						"buffer_size": 1895,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1150,
+								1150
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 168.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "lib/gnome-wallpaper-changer.rb",
+					"settings":
+					{
+						"buffer_size": 425,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								21,
+								21
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

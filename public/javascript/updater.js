@@ -40,8 +40,8 @@ Updater.wire_file_checkbox = function(checkbox, file, folder) {
 };
 
 Updater.make_include_all_button = function( container, folderDiv, folder ) {
-	var container = $('<span>');
-	var button = $('<input>').attr('type', 'button').val('include all');
+	var container = $('<div>').addClass('command');
+	var button = $('<a>').attr('href', '#').text('include all');
 	button.click(function(){
 		$.ajax({
 			type: 'POST',
@@ -56,14 +56,15 @@ Updater.make_include_all_button = function( container, folderDiv, folder ) {
 				Updater.build_folder(container, ret, folderDiv);
 			});
 		});
+		return false;
 	});
 	container.append( button );
 	return container;
 };
 
 Updater.make_exclude_all_button = function( container, folderDiv, folder ) {
-	var container = $('<span>');
-	var button = $('<input>').attr('type', 'button').val('exclude all');
+	var container = $('<div>').addClass('command');
+	var button = $('<a>').attr('href', '#').text('exclude all');
 	button.click(function(){
 		$.ajax({
 			type: 'POST',
@@ -78,6 +79,7 @@ Updater.make_exclude_all_button = function( container, folderDiv, folder ) {
 				Updater.build_folder(container, ret, folderDiv);
 			});
 		});
+		return false;
 	});
 	container.append( button );
 	return container;
@@ -95,9 +97,10 @@ Updater.fetch_interval = function(input) {
 Updater.build_folder = function(container, folder, existingFolderDiv) {
 	var folderDiv = $("<div>");
 	folderDiv.addClass('folder').
-	append( $('<div>').text(folder.path).
+	append( $('<div>').addClass('top-bar').text(folder.path).
 		append( Updater.make_include_all_button( container, folderDiv, folder ) ).
 		append( Updater.make_exclude_all_button( container, folderDiv, folder ) ) );
+	var filesDiv = $('<div>').addClass('wallpaper-list');
 	folder.files.forEach(function(file){
 		var checkbox = $('<input>').attr('type', 'checkbox');
 		var fileDiv = $("<div>").addClass('file').append(
@@ -105,8 +108,9 @@ Updater.build_folder = function(container, folder, existingFolderDiv) {
 			attr('src', '/file?path=' + encodeURI(file))
 			).append( checkbox );
 		Updater.wire_file_checkbox( checkbox, file, folder );
-		folderDiv.append( fileDiv );
+		filesDiv.append( fileDiv );
 	});
+	folderDiv.append( filesDiv );
 	if(existingFolderDiv) {
 		existingFolderDiv.replaceWith(folderDiv);
 		folderDiv.css("background-color", "#55FF55").animate({ backgroundColor: $.Color("#FFFFFF")}, 500);
