@@ -22,6 +22,11 @@ Updater.wire_interval_field = function(input) {
 };
 
 Updater.wire_add_folder_form = function( form, input ) {
+	input.autocomplete({
+		source: '/folder-suggest',
+		minLength: 1,
+		delay: 200
+	});
 	form.submit(function(){
 		$.ajax({
 			type: 'POST',
@@ -29,7 +34,9 @@ Updater.wire_add_folder_form = function( form, input ) {
 			data: { folder: input.val() }
 		}).done(function( folder ) {
 			input.val('');
-			Updater.build_folder( $("#wallpapers"), folder );
+			if(folder) {
+				Updater.build_folder( $("#wallpapers"), folder );
+			}
 		});
 		return false;
 	});
@@ -143,8 +150,10 @@ Updater.build_folder = function(container, folder, existingFolderDiv) {
 	var filesDiv = $('<div>').addClass('wallpaper-list');
 	folder.files.forEach(function(file){
 		var checkbox = $('<input>').attr('type', 'checkbox');
+		var fileName = file.substring( file.lastIndexOf('/') + 1 );
 		var fileDiv = $("<div>").addClass('file').append(
 			$("<img>").attr('src', '/file?path=' + encodeURI(file)).
+			attr('title', fileName).
 			dblclick(function(){
 				$.ajax({
 					type: 'POST',

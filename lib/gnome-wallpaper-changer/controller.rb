@@ -49,9 +49,13 @@ module Gnome::Wallpaper::Changer
     end
 
     post '/add' do
-      Configuration.add_folder params[:folder]
+      result = Configuration.add_folder params[:folder]
       content_type :json
-      Updater.get_expanded_configuration(params[:folder]).to_json
+      if result
+        Updater.get_expanded_configuration(params[:folder])
+      else
+        nil
+      end.to_json
     end
 
     post '/remove' do
@@ -83,6 +87,13 @@ module Gnome::Wallpaper::Changer
       else
         403
       end
+    end
+
+    get '/folder-suggest' do
+      term = params[:term]
+      lookup_dir = term.gsub /[^\/]+$/, ""
+      partial = term[ ( term.rindex('/') + 1 )..-1 ]
+      Pathname.new(lookup_dir).children.select { |child| child.directory? && child.basename.to_s.index( partial ) == 0 }.map(&:to_s).sort.to_json
     end
 
 	end

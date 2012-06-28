@@ -141,8 +141,13 @@ module Gnome::Wallpaper::Changer
       end
 
       def add_folder folder
-        folders << { path: folder, excluded: [] }
-        save!
+        if folders.find{ |f| f[:path] == folder }
+          false
+        else
+          folders << { path: folder, excluded: [] }
+          save!
+          true
+        end
       end
 
       def remove_folder folder
