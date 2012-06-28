@@ -160,7 +160,17 @@ module Gnome::Wallpaper::Changer
       end
 
       def install_autostart!
-        bin = Gem.bin_path "gnome-wallpaper-changer", "gnome-wallpaper-changer"
+        bin = begin
+          require "rvm"
+          wrapper = RVM.path + "/bin/" + RVM.current.environment_name + "_gnome-wallpaper-changer"
+          if !File.exists? wrapper
+            RVM.current.wrapper RVM.current.environment_name, RVM.current.environment_name, "gnome-wallpaper-changer"
+          end
+          wrapper
+        rescue
+          Gem.bindir( Gem.dir ) + '/gnome-wallpaper-changer'
+        end
+        puts "Detected bin: #{bin}"
         File.open AUTOSTART, "w" do |io|
           io.puts "[Desktop Entry]"
           io.puts "Type=Application"
