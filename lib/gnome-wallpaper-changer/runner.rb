@@ -17,7 +17,11 @@ module Gnome::Wallpaper::Changer
       end
 
       if @options[:kill] || @options[:autostart]
-        Thin::Server.kill PID_FILE, 0 if File.exists?( PID_FILE )
+        begin
+          Thin::Server.kill PID_FILE, 0 if File.exists?( PID_FILE )
+        rescue Errno::ESRCH => e
+          #noop
+        end
         FileUtils.rm PID_FILE if File.exists?( PID_FILE )
         exit if @options[:kill]
       end
