@@ -53,3 +53,12 @@ Multiple Ruby managers, such as RVM, heavily modify the environment in order to 
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Changelog
+0.0.2
+
+* Suppressing EPERM on startup when a pid has gone stale.
+
+0.0.1
+
+* Initial release.
