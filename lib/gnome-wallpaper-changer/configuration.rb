@@ -172,6 +172,7 @@ module Gnome::Wallpaper::Changer
           Gem.bindir( Gem.dir ) + '/gnome-wallpaper-changer'
         end
         puts "Detected bin: #{bin}"
+        ensure_autostart_dir_exists
         File.open AUTOSTART, "w" do |io|
           io.puts "[Desktop Entry]"
           io.puts "Type=Application"
@@ -190,6 +191,10 @@ module Gnome::Wallpaper::Changer
 
       def autostart_installed?
         File.exists? AUTOSTART
+      end
+
+      def ensure_autostart_dir_exists
+        FileUtils.mkdir_p AUTOSTART_DIR unless File.exists?( AUTOSTART_DIR )
       end
 
     end

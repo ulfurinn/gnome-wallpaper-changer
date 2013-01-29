@@ -55,10 +55,15 @@ Multiple Ruby managers, such as RVM, heavily modify the environment in order to 
 5. Create new Pull Request
 
 ## Changelog
-0.0.2
+
+### 0.0.3
+
+* Fixed an error installing autostart on a fresh Linux setup
+
+### 0.0.2
 
 * Suppressing EPERM on startup when a pid has gone stale.
 
-0.0.1
+### 0.0.1
 
 * Initial release.

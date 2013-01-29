@@ -12,7 +12,8 @@ module Gnome
       PID_FILE = "#{CONFIG_DIR}/updater.pid"
       LOG_FILE = "#{CONFIG_DIR}/updater.log"
 
-      AUTOSTART = "#{ENV['HOME']}/.config/autostart/gnome-wallpaper-changer.desktop"
+      AUTOSTART_DIR = "#{ENV['HOME']}/.config/autostart"
+      AUTOSTART = "#{AUTOSTART_DIR}/gnome-wallpaper-changer.desktop"
 
     end
   end
